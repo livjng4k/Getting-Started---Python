@@ -13,4 +13,4 @@ class Role(Base):
 
 
 def __repr__(self):
-    return "<Account(username = '%d', password='%s')>" % (self.username, self.password)
+    return "<Role(id = '%d', role='%s')>" % (self.id, self.role)

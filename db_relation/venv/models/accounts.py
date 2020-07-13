@@ -17,13 +17,13 @@ class Account(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     username = Column(String)
     password = Column(String)
-    user_id = Column(Integer, ForeignKey('user.id'))
+    # user_id = Column(Integer, ForeignKey('user.id'))
 
     disable = Column(Boolean, default=False)
 
     roles: List[Role] = relationship('Role', secondary='account_role')  # 1 account - n roles
-    user: User = relationship('User', useList=False, back_populate='account')  # 1 account - 1 user(profile)
+    # user: User = relationship('User', uselist=False, back_populate='account')  # 1 account - 1 user(profile)
 
 
 def __repr__(self):
-    return "<Account(username = '%d', password='%s')>" % (self.username, self.password)
+    return "<Account(username = '%d', password='%s', user='%s')>" % (self.username, self.password, self.user_id)

@@ -19,7 +19,7 @@ class User(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String, default=' ')
-    dob = Column(Date, default=datetime.date)
+    dob = Column(Date, default=datetime.date.today())
     email = Column(String, default=' ')
     phone = Column(String, default=' ')
     avatar = Column(String, default=' ')
@@ -28,7 +28,7 @@ class User(Base):
     disable = Column(Boolean, default=False)
 
     orders: List[Order] = relationship("Order", back_populates='user')
-    account: Account = relationship('Account', useList=False, back_populates='user')
+    # account: Account = relationship('Account', uselist=False, back_populates='user')
 
 
 def __repr__(self):

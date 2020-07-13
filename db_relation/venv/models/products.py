@@ -11,6 +11,7 @@ class Product(Base):
     price = Column(Integer, nullable=False)
     description = Column(String, nullable=True)
     price = Column(Integer, nullable=True)
+
     disable = Column(Boolean, default=False)
 
 

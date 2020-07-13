@@ -1,16 +1,17 @@
 from __future__ import annotations
 from base import Base
-from typing import List
-from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, String, Boolean
+
 
 class Product(Base):
     __tablename__ = 'product'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String,nullable=False)
-    price = Column(Integer,nullable=False)
+    name = Column(String, nullable=False)
+    price = Column(Integer, nullable=False)
     description = Column(String, nullable=True)
+    price = Column(Integer, nullable=True)
+    disable = Column(Boolean, default=False)
 
 
 def __repr__(self):

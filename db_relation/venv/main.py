@@ -4,6 +4,7 @@ import sqlalchemy as db
 from base import Base
 from sqlalchemy.orm import relationship
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import query
 
 from models.users import User
 from models.accounts import Account
@@ -11,6 +12,8 @@ from models.orders import Order
 from models.products import Product
 from models.coupons import Coupon
 from models.roles import Role
+from models.producers import Producer
+from models.sellers import Seller
 from models.account_role import AccountRole
 from models.order_detail import OrderDetail
 
@@ -94,19 +97,38 @@ def add_product_order(session: db.orm.session.Session):
         o.products.append(p3)
 
 
+def add_producer(session: db.orm.session.Session):
+    p1 = Producer(name="Apple", description="Apple products: Iphone...", logo="Aplle")
+    p2 = Producer(name="Samsung", description="Samsung products: Galaxy...", logo="Samsung")
+
+    session.add_all([p1, p2])
+
+
+def add_seller(session: db.orm.session.Session):
+    p1 = Seller(name="Apple Distributer 1", description="Apple products: Iphone...")
+    p2 = Producer(name="Samsung Distributer 1", description="Samsung products: Galaxy...")
+    p3 = Seller(name="Apple Distributer 2", description="Apple products: Iphone...")
+    p4 = Producer(name="Samsung Distributer 2", description="Samsung products: Galaxy...")
+
+    session.add_all([p1, p2, p3, p4])
+
+
+def add_product_seller(session: db.orm.session.Session, seller_id: int):
+    seller: Seller = session.query(Seller).filter(Seller.id == seller_id).first()
+
+    if seller:
+        seller.products.append(Product(name="Iphone", price=20000, description="Product of Apple corp."))
+        seller.products.append(Product(name="SamSung", price=10000, description="Product of SamSung corp."))
+
+
 def main():
     Session: db.orm.session.sessionmaker = sessionmaker(bind=engine)
     session: db.orm.Session = Session()
     session.execute("PRAGMA foreign_keys = 1")
 
-    # add_users(session)
-    # add_accounts(session)
-    add_roles(session)
-
-    # add_to_product_users(session, 1)
-    # get_all_order_by_user_id(session, 2)
-    # add_to_product(session)
-    # add_product_order(session)
+    add_producer(session)
+    add_seller(session)
+    add_product_seller(session)
 
     session.commit()
     session.close()

@@ -24,3 +24,7 @@ class ProductCreateDto(BaseModel):
     description: str
     producer_id: int
 
+
+class SellerCreateProductDto(BaseModel):
+    seller_id: int
+    productCreate: ProductCreateDto

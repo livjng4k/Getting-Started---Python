@@ -22,10 +22,10 @@ class ProductRepository(object):
         return self.session.query(Product).filter(Product.disable == False)
 
 
-    def save_product(self, product_new: ProductCreateDto):
+    def save_product(self, seller_id: int, product_new: ProductCreateDto):
         product: Product
         try:
-            product = Product(name=product_new.name, price=product_new.price, description=product_new.description, producer_id=product_new.producer_id, seller_id=1)
+            product = Product(name=product_new.name, price=product_new.price, description=product_new.description, producer_id=product_new.producer_id, seller_id=seller_id)
             self.session.add(product)
             self.session.commit()
         except Exception as e:

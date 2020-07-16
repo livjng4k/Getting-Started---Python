@@ -8,7 +8,7 @@ from fastapi import FastAPI, File, UploadFile
 from pydantic import parse_obj_as
 from typing import List
 
-from dto.product import ProductUpdateDTO, ProductDto, ProductCreateDto
+from dto.product import ProductUpdateDTO, ProductDto, ProductCreateDto, SellerCreateProductDto
 
 from models.products import Product
 from models.sellers import Seller
@@ -55,7 +55,7 @@ async def get_product(product_id: int):
 
 
 @app.post('/product')
-async def create_produt(product_new: ProductCreateDto):
+async def create_produt(seller_create_product: SellerCreateProductDto):
     result: Product
     result = product_repository.save_product(product_new)
     return result
@@ -71,13 +71,6 @@ async def create_produt(product_update: ProductUpdateDTO):
 @app.delete('/product/{product_id}')
 async def create_produt(product_id: int):
     return {"message": product_repository.remove_product(product_id)}
-
-
-
-
-@app.get('/yusers', )
-async def get_products():
-    return None
 
 
 

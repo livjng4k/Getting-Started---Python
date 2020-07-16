@@ -4,10 +4,9 @@ from sqlalchemy.orm.session import Session
 from models.roles import Role
 
 class RoleRepository(object):
-    _initroles = ["ADMIN", "CUSTOMER", "SELLER"]
     def __init__(self, session: db.orm.Session):
         self.session: db.orm.Session = session
-        for r in _initrole:
+        for r in ["ADMIN", "CUSTOMER", "SELLER"]:
             asd = self.get_role_by_name(r)
             if not asd:
                 try:

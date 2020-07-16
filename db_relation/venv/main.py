@@ -15,6 +15,7 @@ from models.sellers import Seller
 from models.producers import Producer
 
 from repository.product_repository import ProductRepository
+from repository.role_repository import RoleRepository
 
 # from fastapi.staticfiles import StaticFiles
 # from starlette.responses import RedirectResponse
@@ -25,6 +26,7 @@ app = FastAPI()
 
 session: db.orm.session = None
 product_repository: ProductRepository = None
+role_repository: RoleRepository = None
 
 @app.on_event("startup")
 async def startup_event():
@@ -38,6 +40,9 @@ async def startup_event():
 
     global product_repository
     product_repository = ProductRepository(sess)
+
+    global role_repository
+    role_repository = RoleRepository(sess)
 
 
 @app.get('/product', response_model=List[ProductDto])

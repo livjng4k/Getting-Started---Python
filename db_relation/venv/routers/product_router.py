@@ -3,7 +3,6 @@ from __future__ import annotations
 from fastapi import APIRouter
 
 import sqlalchemy as db
-# from base import Base
 import base
 from sqlalchemy.orm import sessionmaker
 from pydantic import parse_obj_as
@@ -43,9 +42,9 @@ async def create_product(seller_create_product: SellerCreateProductDto):
 
 
 @router.put('/products')
-async def create_product(product_update: ProductUpdateDTO):
+async def update_product(product_update: ProductUpdateDTO):
     result: Product
-    result = product_repository.save_product(product_update)
+    result = product_repository.update_product(product_update)
     return result
 
 

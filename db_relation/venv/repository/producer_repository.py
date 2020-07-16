@@ -22,7 +22,7 @@ class ProducerRepository(object):
         return self.session.query(Producer).filter(Producer.disable == False)
 
 
-    def save_producer(self, seller_id: int, producer_new: ProducerDTO):
+    def save_producer(self, producer_new: ProducerDTO):
         producer: Producer
         try:
             producer = Producer(name=producer_new.name, description=producer_new.description, logo=producer_new.logo)

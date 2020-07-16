@@ -45,7 +45,7 @@ async def startup_event():
     role_repository = RoleRepository(sess)
 
 
-@app.get('/product', response_model=List[ProductDto])
+@app.get('/product', response_model=List[ProductDto], tags=["Product"])
 async def get_products():
     products = product_repository.get_all()
     results: List[ProductDto]
@@ -53,27 +53,27 @@ async def get_products():
     return results
 
 
-@app.get('/product/{product_id}', response_model=ProductDto)
+@app.get('/product/{product_id}', response_model=ProductDto, tags=["Product"])
 async def get_product(product_id: int):
     product = product_repository.get_product(product_id)
     return product
 
 
-@app.post('/product')
+@app.post('/product', tags=["Product"])
 async def create_produt(seller_create_product: SellerCreateProductDto):
     result: Product
     result = product_repository.save_product(product_new)
     return result
 
 
-@app.put('/product')
+@app.put('/product', tags=["Product"])
 async def create_produt(product_update: ProductUpdateDTO):
     result: Product
     result = product_repository.save_product(product_update)
     return result
 
 
-@app.delete('/product/{product_id}')
+@app.delete('/product/{product_id}', tags=["Product"])
 async def create_produt(product_id: int):
     return {"message": product_repository.remove_product(product_id)}
 

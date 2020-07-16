@@ -31,6 +31,7 @@ class ProductRepository(object):
         except Exception as e:
             self.session.rollback()
             print(e)
+            return None
 
         return product
 

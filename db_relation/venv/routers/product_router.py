@@ -34,14 +34,14 @@ async def get_product(product_id: int):
     return product
 
 
-@router.post('/products')
+@router.post('/products', response_model=ProductDto)
 async def create_product(seller_create_product: SellerCreateProductDto):
     result: Product
     result = product_repository.save_product(seller_create_product.seller_id, seller_create_product.productCreate)
     return result
 
 
-@router.put('/products')
+@router.put('/products', response_model=ProductDto)
 async def update_product(product_update: ProductUpdateDTO):
     result: Product
     result = product_repository.update_product(product_update)

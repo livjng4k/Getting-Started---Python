@@ -34,14 +34,14 @@ async def get_producer(producer_id: int):
     return product
 
 
-@router.post('/producers')
+@router.post('/producers', response_model=ProducerDTO)
 async def create_producer(producer_new: ProducerDTO):
     result: Producer
     result = producer_repository.save_producer(producer_new)
     return result
 
 
-@router.put('/producers')
+@router.put('/producers', response_model=ProducerDTO)
 async def update_producer(producer_update: ProducerDTO):
     result: Producer
     result = producer_repository.update_producer(producer_update)

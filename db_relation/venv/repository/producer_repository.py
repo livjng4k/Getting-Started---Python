@@ -18,14 +18,11 @@ class ProducerRepository(object):
         return self.session.query(Producer).filter(Producer.disable == False).all()
 
 
-    def get_all_query(self):
-        return self.session.query(Producer).filter(Producer.disable == False)
-
-
     def save_producer(self, producer_new: ProducerDTO):
         producer: Producer
         try:
             producer = Producer(name=producer_new.name, description=producer_new.description, logo=producer_new.logo)
+
             self.session.add(producer)
             self.session.commit()
         except Exception as e:
@@ -36,21 +33,22 @@ class ProducerRepository(object):
         return producer
 
 
-    def update_producer(self, Producer_id: int, producer_update: ProducerDTO):
+    def update_producer(self, producer_id: int, producer_update: ProducerDTO):
         try:
             producer: Producer
-            producer = self.get_Producer(Producer_id)
+            producer = self.get_Producer(producer_id)
             if producer:
                 producer.name = producer_update.name
-                producer.price = producer_update.price
                 producer.description = producer_update.description
+                producer.logo = producer_update.logo
+
                 self.session.add(producer)
                 self.session.commit()
         except Exception:
             self.session.rollback()
             return None
 
-        return producer.id
+        return producer
 
 
     def remove_producer(self, producer_id: int):
@@ -59,6 +57,7 @@ class ProducerRepository(object):
             producer = self.get_producer(producer_id)
             if producer:
                 producer.disable = True
+
                 self.session.add(producer)
                 self.session.commit()
         except Exception:

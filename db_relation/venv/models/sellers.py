@@ -22,5 +22,5 @@ class Seller(Base):
     products: List[Product] = relationship('Product', back_populates='seller')
 
 
-def __repr__(self):
-    return "<Seller(seller_id = '%d', seller_name='%s')>" % (self.id, self.name)
+    def __repr__(self):
+        return "<Seller(seller_id = '%d', seller_name='%s')>" % (self.id, self.name)

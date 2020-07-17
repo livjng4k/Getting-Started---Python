@@ -34,5 +34,5 @@ class Order(Base):
     coupon: Coupon = relationship("Coupon", uselist=False)
 
 
-def __repr__(self):
-    return "<Order(order_id = '%d', user_id='%s')>" % (self.id, self.user_id)
+    def __repr__(self):
+        return "<Order(order_id = '%d', user_id='%s')>" % (self.id, self.user_id)

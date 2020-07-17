@@ -20,5 +20,5 @@ class Coupon(Base):
     disable = Column(Boolean, default=False)
 
 
-def __repr__(self):
-    return "<Coupon(code = '%d')>" % self.code
+    def __repr__(self):
+        return "<Coupon(code = '%d')>" % self.code

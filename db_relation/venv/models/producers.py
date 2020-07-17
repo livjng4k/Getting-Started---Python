@@ -21,5 +21,6 @@ class Producer(Base):
     products: List[Product] = relationship('Product', back_populates='producer')
 
 
-def __repr__(self):
-    return "<Producer(producer_id = '%d', producer_name='%s')>" % (self.id, self.name)
+    def __repr__(self):
+        return "<Producer(producer_id = '%d', producer_name='%s')>" % (self.id, self.name)
+

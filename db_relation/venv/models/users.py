@@ -31,5 +31,5 @@ class User(Base):
     # account: Account = relationship('Account', uselist=False, back_populates='user')
 
 
-def __repr__(self):
-    return "<User(user_id = '%d', name='%s')>" % (self.id, self.name)
+    def __repr__(self):
+        return "<User(user_id = '%d', name='%s')>" % (self.id, self.name)

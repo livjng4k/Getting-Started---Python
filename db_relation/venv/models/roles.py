@@ -12,5 +12,5 @@ class Role(Base):
     disable = Column(Boolean, default=False)
 
 
-def __repr__(self):
-    return "<Role(id = '%d', role='%s')>" % (self.id, self.role)
+    def __repr__(self):
+        return "<Role(id = '%d', role='%s')>" % (self.id, self.role)

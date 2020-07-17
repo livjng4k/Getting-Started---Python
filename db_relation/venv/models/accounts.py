@@ -25,5 +25,5 @@ class Account(Base):
     # user: User = relationship('User', uselist=False, back_populate='account')  # 1 account - 1 user(profile)
 
 
-def __repr__(self):
-    return "<Account(username = '%d', password='%s', user='%s')>" % (self.username, self.password, self.user_id)
+    def __repr__(self):
+        return "<Account(username = '%d', password='%s', user='%s')>" % (self.username, self.password, self.user_id)
